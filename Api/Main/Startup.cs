@@ -29,6 +29,7 @@ namespace Catalyst.Api.Main
             );
 
             services.AddScoped<ProjectService>();
+            services.AddScoped<LanguageService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

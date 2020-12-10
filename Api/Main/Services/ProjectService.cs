@@ -39,7 +39,7 @@ namespace Catalyst.Api.Main.Services
                 throw new KeyNotFoundException("Project not found.");
             }
 
-            _programContext.Update(record);
+            _programContext.Projects.Update(record);
             _programContext.SaveChanges();
         }
 

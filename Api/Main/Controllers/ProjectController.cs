@@ -37,7 +37,7 @@ namespace Catalyst.Api.Main.Controllers
         {
             _projectService.Create(project);
 
-            return CreatedAtAction(nameof(GetSingle), new {id = project.Id}, project);
+            return CreatedAtAction(nameof(GetSingle), new { id = project.Id }, project);
         }
 
         [HttpPut("{id:long}")]

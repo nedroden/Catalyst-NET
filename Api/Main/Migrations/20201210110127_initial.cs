@@ -8,53 +8,53 @@ namespace Main.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Projects",
+                name: "projects",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
-                    Description = table.Column<string>(maxLength: 200, nullable: false)
+                    name = table.Column<string>(maxLength: 50, nullable: false),
+                    description = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.Id);
+                    table.PrimaryKey("PK_projects", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Languages",
+                name: "languages",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
-                    Dialect = table.Column<string>(maxLength: 50, nullable: false),
-                    ProjectId = table.Column<long>(nullable: false)
+                    name = table.Column<string>(maxLength: 50, nullable: false),
+                    dialect = table.Column<string>(maxLength: 50, nullable: false),
+                    project_id = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Languages", x => x.Id);
+                    table.PrimaryKey("PK_languages", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Languages_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
-                        principalColumn: "Id",
+                        name: "FK_languages_projects_project_id",
+                        column: x => x.project_id,
+                        principalTable: "projects",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Languages_ProjectId",
-                table: "Languages",
-                column: "ProjectId");
+                name: "IX_languages_project_id",
+                table: "languages",
+                column: "project_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Languages");
+                name: "languages");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "projects");
         }
     }
 }
