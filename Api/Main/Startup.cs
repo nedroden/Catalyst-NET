@@ -2,7 +2,6 @@ using Catalyst.Api.Main.Models;
 using Catalyst.Api.Main.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,8 +27,10 @@ namespace Catalyst.Api.Main
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
             );
 
-            services.AddScoped<ProjectService>();
-            services.AddScoped<LanguageService>();
+            services.AddSingleton<ProjectService>();
+            services.AddSingleton<LanguageService>();
+            services.AddSingleton<UserService>();
+            services.AddSingleton<TokenService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

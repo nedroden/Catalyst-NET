@@ -9,5 +9,10 @@
   "AllowedHosts": "*",
   "ConnectionStrings": {
     "DefaultConnection": "Host=localhost;Port=5432;Username=;Password=;Database=Catalyst"
+  },
+  "Authentication": {
+    "JwtKey": "6r4#Cs%WNhVqMeRc",
+    "JwtIssuer": "CatalystDotNet",
+    "JwtExpireDays": 30
   }
 }

@@ -8,7 +8,8 @@ namespace Catalyst.Api.Main.Models
         {
         }
 
-        public DbSet<Project> Projects { get; set; }
         public DbSet<Language> Languages { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
