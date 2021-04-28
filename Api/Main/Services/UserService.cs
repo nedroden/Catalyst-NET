@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Catalyst.Api.Main.Models;
 using Catalyst.Api.Main.Exceptions;
+using Microsoft.AspNetCore.Identity;
 
 namespace Catalyst.Api.Main.Services
 {
@@ -63,7 +64,7 @@ namespace Catalyst.Api.Main.Services
 
         public void Remove(long id)
         {
-            Remove(new User() { Id = id });
+            Remove(new User { Id = id });
         }
 
         public void Remove(User user)
@@ -85,6 +86,24 @@ namespace Catalyst.Api.Main.Services
         public bool Exists(long id)
         {
             return FetchSingle(id) != null;
+        }
+
+        public bool Exists(string email, string username)
+        {
+            return FetchByEmail(email) is object || FetchByUsername(username) is object;
+        }
+
+        public bool IsValidPassword(User user, string plainPassword)
+        {
+            var hasher = new PasswordHasher<User>();
+            PasswordVerificationResult result = hasher.VerifyHashedPassword(user, user.Password, plainPassword);
+
+            return result == PasswordVerificationResult.Success;
+        }
+
+        public string HashPassword(string plainPassword)
+        {
+            return new PasswordHasher<User>().HashPassword(null, plainPassword);
         }
     }
 }

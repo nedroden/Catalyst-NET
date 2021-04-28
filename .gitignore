@@ -2,5 +2,8 @@ bin
 obj
 appsettings.json
 .idea
+.vs
 .vscode
 Tools/
+
+*.csproj.user

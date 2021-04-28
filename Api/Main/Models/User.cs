@@ -22,7 +22,7 @@ namespace Catalyst.Api.Main.Models
 
         [Required]
         [Column("password")]
-        public string Password { private get; set; }
+        public string Password { get; set; }
 
         [StringLength(30, MinimumLength = 2)]
         [Column("first_name")]

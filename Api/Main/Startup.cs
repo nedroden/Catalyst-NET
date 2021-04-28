@@ -11,10 +11,7 @@ namespace Catalyst.Api.Main
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -27,10 +24,10 @@ namespace Catalyst.Api.Main
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
             );
 
-            services.AddSingleton<ProjectService>();
-            services.AddSingleton<LanguageService>();
-            services.AddSingleton<UserService>();
-            services.AddSingleton<TokenService>();
+            services.AddScoped<ProjectService>();
+            services.AddScoped<LanguageService>();
+            services.AddScoped<UserService>();
+            services.AddScoped<TokenService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -11,4 +11,4 @@ run_main:
 	dotnet run --project=Main
 
 test:
-	dotnet test
+	dotnet test -v normal
